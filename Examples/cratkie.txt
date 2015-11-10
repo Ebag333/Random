@@ -22,24 +22,29 @@ Function GetUserInputForJobToRun()
 Main()
 {
 
-	$ReturnJob = GetUserInputForJobToRun()
+	
+	While (LoopForever = 1)
+	{
+		$ReturnJob = GetUserInputForJobToRun()
 
-	If ($ReturnJob = 1)
-	{
-		GetUserInput_NewTalent()
-	}
-	If ($ReturnJob = 2)
-	{
-		GetUserInput_TalentSearch()
-	}
-	If ($ReturnJob = 3)
-	{
-		GetUserInput_DisplayTalent()
-	}
-	If ($ReturnJob = "q")
-	{
-		DisplayOutput "Goodbye"
-		Return 0
+		If ($ReturnJob = 1)
+		{
+			GetUserInput_NewTalent()
+		}
+		If ($ReturnJob = 2)
+		{
+			GetUserInput_TalentSearch()
+		}
+		If ($ReturnJob = 3)
+		{
+			GetUserInput_DisplayTalent()
+		}
+		If ($ReturnJob = "q")
+		{
+			DisplayOutput "Goodbye"
+			Return 0
+		}
 	}
 	
+	Return 0
 }
