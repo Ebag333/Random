@@ -1,0 +1,45 @@
+//Pseudo code
+//Function Name: GetUserInputForJobToRun
+//Purpose: Queries user input to select what task they want to do
+//Input: None
+//Output: Returns 1, 2, 3, or Q based on user input
+
+Function GetUserInputForJobToRun()
+{
+	Output a message to the user
+		This is a talent database and application system: 
+
+	Output display of options
+		1. Add New, 2. Talent Search, 3. Display Applicants
+
+	Output prompt, “Please enter 1, 2, or 3 for the desired options. When finished, type ‘q’ to quit.”
+
+	DO while user input (!= q or != 1 or != 2 or != 3)
+		Return user input (q, 1, 2, 3)
+	Else output a message “Sorry, you must either enter a 1, 2, or 3. If you are finished please enter ‘q’.
+}
+
+Main()
+{
+
+	$ReturnJob = GetUserInputForJobToRun()
+
+	If ($ReturnJob = 1)
+	{
+		GetUserInput_NewTalent()
+	}
+	If ($ReturnJob = 2)
+	{
+		GetUserInput_TalentSearch()
+	}
+	If ($ReturnJob = 3)
+	{
+		GetUserInput_DisplayTalent()
+	}
+	If ($ReturnJob = "q")
+	{
+		DisplayOutput "Goodbye"
+		Return 0
+	}
+	
+}
