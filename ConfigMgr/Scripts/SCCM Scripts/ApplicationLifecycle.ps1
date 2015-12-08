@@ -39,8 +39,8 @@
 
 Param(
 [string]$ApplicationName = 'A*,B*,C*,D*,E*,F*,G*,H*,I*,J*,K*,L*,M*,N*,O*,P*,Q*,R*,S*,T*,U*,V*,W*,X*,Y*,Z*,1*,2*,3*,4*,5*,6*,7*,8*,9*,0*',
-[string]$CMSite = "UB1",
-[string]$CMServer = "X01337AA00100V.umpq.umpquabank.com",
+[string]$CMSite = "ABC",
+[string]$CMServer = "server.fqdn.com",
 [bool]$Turbo = $false,
 [bool]$Cleanup = $false,
 [bool]$VerboseLogging = $false
