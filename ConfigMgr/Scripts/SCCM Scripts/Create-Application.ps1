@@ -44,8 +44,8 @@ Param(
     [Parameter(Mandatory=$true)]
     [ValidateSet("Development","Production","Retired")] 
     $Action,
-    [string]$CMSite = "UB1",
-    [string]$CMServer = "X01337AA00100V.umpq.umpquabank.com",
+    [string]$CMSite = "ABC",
+    [string]$CMServer = "server.fqdn.com",
     [bool]$VerboseLogging = $false
 )
 
