@@ -1,40 +1,30 @@
 <#
     .DESCRIPTION
-        Handles Application life cycle management.
-        This script is designed to run automatically, without requiring intervention or input.
-    .PARAMETER ApplicationName
-        Name of application. Can be a single application name, part of a name with a wild card, or a list of applications (comma delimited)
+        Creates Application and Deployment Types.
+        This script is run against an XML file, and then can deploy applications to Development, Production, or Retire them.
+    .PARAMETER $XMLDocument
+        Path to the XML document to read, where the applications that need to be modified (created, moved into Production, or Retired) are documented.
+    .PARAMETER $Action
+        Action to be taken against the XML Document.  Provided actions are Development, Production, or Retired.
     .PARAMETER CMSite
         CM site code
     .PARAMETER CMServer
         CM site server
-    .PARAMETER Turbo
-        If Turbo is set to be $true, then it will skip the collection cleanup step
-    .PARAMETER Cleanup
-        If Cleanup is set to be $true, then it will run the application and cleanup steps (skipping the steps that build the application collection and deployments). If both Cleanup and Turbo are set to be true, it will run the application cleanup but not the collection cleanup steps.
     .PARAMETER VerboseLogging
         If VerboseLogging is set to be $true, then detailed logging will be written
     .INPUTS
-        None. You cannot pipe objects to Update-Month.ps1.
+        None. You cannot pipe objects in.
     .OUTPUTS
-        None. Update-Month.ps1 does not generate any output.
+        None. Does not generate any output.
     .EXAMPLE
-        .\ApplicationLicecycle.ps1 -SC2012_ApplicationName "Microsoft Office 2013 Professional Pro Plus"
-        This command creates collections and deployments for a single application.
+        .\CreateApplication.ps1 -XMLDocument "c:\temp\Applications.xml" -Action "Development"
+        Creates the application and collections for the development environment.
     .EXAMPLE
-        .\ApplicationLicecycle.ps1 -SC2012_ApplicationName "*NET Framework 4*"
-        This command creates collections and deployments for all applications that have NET Framework 4 in the name.
-        Notice the wildcards, and the quotes due to the spaces.
+        .\CreateApplication.ps1 -XMLDocument "c:\temp\Applications.xml" -Action "Production"
+        Moves the applications from development to production.
     .EXAMPLE
-        .\ApplicationLicecycle.ps1 -SC2012_ApplicationName "Microsoft Office 2013 Professional Pro Plus,Microsoft Office 2010 Professional Pro Plus"
-        This command creates collections and deployments for two specific applications.
-    .EXAMPLE
-        .\ApplicationLicecycle.ps1 -SC2012_ApplicationName "Adobe*,Microsoft*"
-        This command creates collections and deployments for all Adobe and Microsoft products.
-    .EXAMPLE
-        .\AutoGenerateApplicationDeployments.ps1
-        This command creates collections and deployments for all applications.
-        WARNING: This process can take an extremely long time to run.
+        .\CreateApplication.ps1 -XMLDocument "c:\temp\Applications.xml" -Action "Retired"
+        Moves the Applications to the Retired folder.
 #>
 
 Param(
@@ -44,8 +34,8 @@ Param(
     [Parameter(Mandatory=$true)]
     [ValidateSet("Development","Production","Retired")] 
     $Action,
-    [string]$CMSite = "ABC",
-    [string]$CMServer = "server.fqdn.com",
+    [string]$CMSite = "UB1",
+    [string]$CMServer = "X01337AA00100V.umpq.umpquabank.com",
     [bool]$VerboseLogging = $false
 )
 
